@@ -63,7 +63,6 @@ func PrintUser(i int, wg *sync.WaitGroup, job chan *Data) {
 		select {
 		case data := <-job:
 			fmt.Println(i, data.Identity, data.User.Id, data.User.Name)
-			// time.Sleep(10 * time.Millisecond)
 			wg.Done()
 		}
 	}
