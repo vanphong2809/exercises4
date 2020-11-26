@@ -12,7 +12,7 @@ var tables []interface{}
 
 //ConnectDb open connection to db
 func (d *DB) ConnectDb() error {
-	engine, err := xorm.NewEngine("mysql", "root:password@tcp(0.0.0.0:3306)/test?charset=utf8")
+	engine, err := xorm.NewEngine("mysql", "root:password@tcp(0.0.0.0:3306)/test111?charset=utf8")
 	d.engine = engine
 	return err
 }
@@ -29,6 +29,7 @@ func (d *DB) Createtable() error {
 	}
 	return nil
 }
+
 // func (d *DB) Sync2() error {
 // 	Init()
 // 	err := d.engine.Sync2(tables...)

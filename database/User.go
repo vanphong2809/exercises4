@@ -58,18 +58,18 @@ func (db *DB) FindUser(id string) (*User, error) {
 	return user, nil
 }
 
-func PrintUser(i int, wg *sync.WaitGroup, job chan *Data) {
+func PrintUser(i int, wg *sync.WaitGroup, job chan *User) {
 	for {
 		select {
 		case data := <-job:
-			fmt.Println(i, data.Identity, data.User.Id, data.User.Name)
+			fmt.Println(i, data.Id, data.Name)
 			wg.Done()
 		}
 	}
 }
 func (db *DB) ScanTableUser() error {
 
-	jobs := make(chan *Data, 100)
+	jobs := make(chan *User, 100)
 	defer close(jobs)
 	var wg sync.WaitGroup
 
@@ -84,16 +84,18 @@ func (db *DB) ScanTableUser() error {
 	for i := 0; i < 2; i++ {
 		go PrintUser(i, &wg, jobs)
 	}
-	i := 0
+
 	for rows.Next() {
 		err := rows.Scan(user)
 		if err != nil {
 			log.Fatal(err)
 		}
 		if err == nil {
-			dataUser := &Data{Identity: i, User: *user}
-			i++
-			jobs <- dataUser
+			// dataUser := &Data{Identity: i, User: *user}
+			dataUser := *user
+			// fmt.Println("Dia chi con tro user", &user.Id)
+			// fmt.Println("Dia chi cua bien dataUser", &dataUser.Id)
+			jobs <- &dataUser
 			wg.Add(1)
 		}
 	}

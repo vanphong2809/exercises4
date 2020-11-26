@@ -36,7 +36,7 @@ func main() {
 	// 	fmt.Println("create database success")
 	// }
 	// now := time.Now().Unix()
-	// user1 := database.User{"user1", "Nguyen Cong Phuong", 28091995, now, now}
+	// user1 := database.User{"user2", "Nguyen Tuan Anh", 28091995, now, now}
 	// err1 := db.InsertUser(user1)
 	// if err1 != nil {
 	// 	panic(err1)
@@ -71,7 +71,7 @@ func main() {
 	// 	panic(err4)
 	// }
 	// fmt.Println(*user)
-	//Viết hàm: sau khi tạo user thì insert user_id vào user_point với số điểm 10.
+	// Viết hàm: sau khi tạo user thì insert user_id vào user_point với số điểm 10.
 	// user1 := database.User{Id: "user3", Name: "Nguyen Tuan Anh", Birth: 22112000, Created: time.Now().Unix(), UpdatedAt: time.Now().Unix()}
 	// InsertUserToPoint(user1)
 
@@ -83,6 +83,7 @@ func main() {
 
 	//Bai3
 	// InsertUser()
+	// db.ScanTableUser()
 	db.ScanTableUser()
 
 }
